@@ -65,7 +65,7 @@ async def main(message):
             )
 
             try:
-                result = await app.send_raw(report_peer)
+                result = await app.send(report_peer)
                 print(result, 'Reported by Account', owner_name)
             except BaseException as e:
                 print(e)
@@ -80,3 +80,4 @@ if __name__ == "__main__":
     input_string = sys.argv[1]
 
     asyncio.run(main(message=input_string))
+
