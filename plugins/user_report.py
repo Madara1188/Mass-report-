@@ -114,13 +114,7 @@ async def handle_report(bot: Client, cmd: Message):
 
     await bot.send_message(chat_id=cmd.from_user.id, text=Txt.REPORT_CHOICE, reply_to_message_id=cmd.id, reply_markup=ReplyKeyboardMarkup(CHOICE, resize_keyboard=True))
 
-####
-        # Replace "report_chat_id" with the actual chat ID where you want to report the user
-        result = await app.raw_send(ReportPeer(peer=InputUser(user_id=user_id), reason=report_reason, message_id=0, report_chat_id=0))
-######
-
-
-
+####     
 
 @Client.on_message(filters.regex("1"))
 async def one(bot: Client, msg: Message):
