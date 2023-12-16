@@ -1,0 +1,7 @@
+pyrogram
+TgCrypto
+ujson
+Pyromod
+aiohttp
+pytz
+psutil
