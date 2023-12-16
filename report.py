@@ -57,7 +57,6 @@ async def main(message):
             report_peer = ReportPeer(
                 peer=channel, 
                 reason=report_reason, 
-                message=message
             )
 
             try:
