@@ -1,11 +1,3 @@
-"""
-import sys
-from pyrogram import Client, filters
-import asyncio
-import json
-from pyrogram.raw.functions.account import ReportPeer
-from pyrogram.raw.types import *
-"""
 import sys
 import asyncio
 import json
@@ -56,7 +48,7 @@ async def main(message):
             report_peer = ReportPeer(
                 peer=channel, 
                 reason=report_reason, 
-                message=report_reason
+                message=message
             )
 
             try:
