@@ -5,12 +5,12 @@ import sys
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
-from info import Config, Txt
+from info import Config, Txt, SUDO
 
 config_path = Path("config.json")
 
 
-@Client.on_message(filters.private & filters.user(Config.OWNER) & filters.command('add_account'))
+@Client.on_message(filters.private & filters.user(Config.SUDO) & filters.command('add_account'))
 async def add_account(bot: Client, cmd: Message):
     try:
         if config_path.exists():
@@ -96,7 +96,7 @@ async def add_account(bot: Client, cmd: Message):
             sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
 
 
-@Client.on_message(filters.private & filters.user(Config.OWNER) & filters.command('target'))
+@Client.on_message(filters.private & filters.user(Config.SUDO) & filters.command('target'))
 async def target(bot: Client, cmd: Message):
 
     try:
@@ -122,7 +122,7 @@ async def target(bot: Client, cmd: Message):
             sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
 
 
-@Client.on_message(filters.private & filters.user(Config.OWNER) & filters.command('del_config'))
+@Client.on_message(filters.private & filters.user(Config.SUDO) & filters.command('del_config'))
 async def delete_config(bot: Client, cmd: Message):
 
     btn = [
