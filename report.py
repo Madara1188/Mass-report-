@@ -7,29 +7,11 @@ from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import *
 """
 import sys
-from pyrogram import Client, filters
 import asyncio
 import json
-import random
+from pyrogram import Client, filters
 from pyrogram.raw.functions.account import ReportPeer
-from pyrogram.raw.types import *
-from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, InputReportReasonFake, \
-    InputReportReasonCopyright, InputReportReasonGeoIrrelevant, InputReportReasonPornography, \
-    InputReportReasonIllegalDrugs, InputReportReasonSpam, InputReportReasonPersonalDetails, InputReportReasonViolence
-
-#
-
-     text = [ "Report for child abuse",
-        "Report for impersonation",
-        "Report for copyrighted content",
-        "Report an irrelevant geogroup",
-        "Reason for Pornography",
-        "Report an illegal durg",
-        "Report for offensive person detail",
-        "Report for spam",
-        "Report for Violence" 
-            ]
-
+from pyrogram.raw.types import InputUser, InputReportReasonSpam, InputPeerChannel
 
 
 def get_reason(text):
@@ -57,7 +39,7 @@ def get_reason(text):
 async def main(message):
     config = json.load(open("config.json"))
     report_reason = get_reason(message)
-    report_message = random.choice(text)
+    
     target_peer = config['Target']
     
     for account in config["accounts"]:
@@ -73,14 +55,14 @@ async def main(message):
             except Exception as e:
                 print(e)
                 continue 
-                report_peer = ReportPeer(
+            report_peer = ReportPeer(
                 peer=channel, 
                 reason=report_reason, 
-                message=report_message
+                message=message
             )
 
             try:
-                result = await app.send(ReportPeer)
+                result = await app.send(report_peer)
                 print(result, 'Reported by Account', owner_name)
             except BaseException as e:
                 print(e)
@@ -95,4 +77,3 @@ if __name__ == "__main__":
     input_string = sys.argv[1]
 
     asyncio.run(main(message=input_string))
-
