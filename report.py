@@ -16,6 +16,7 @@ from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, In
     InputReportReasonCopyright, InputReportReasonGeoIrrelevant, InputReportReasonPornography, \
     InputReportReasonIllegalDrugs, InputReportReasonSpam, InputReportReasonPersonalDetails, InputReportReasonViolence
 
+#
 
 def get_message(text):
     if text == "Report for child abuse":
@@ -86,7 +87,7 @@ async def main(message):
             )
 
             try:
-                result = await app.send(report_peer)
+                result = await app.raw_send(ReportPeer(peer=InputUser(user_id=user_id), reason=report_reason, message_id=0, report_chat_id=0))
                 print(result, 'Reported by Account', owner_name)
             except BaseException as e:
                 print(e)
