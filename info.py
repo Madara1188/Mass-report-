@@ -9,7 +9,7 @@ class Config(object):
     
     # Other Configs
     BOT_START_TIME = time.time()
-    OWNER = list(map(int, getenv("OWNER", "6204761408 6691393517").split()))  # ⚠️ Required
+    OWNER = list(map(int, os.environ.get("OWNER", "6204761408 6691393517").split()))  # ⚠️ Required
     # Web Response Config
     WEBHOOK = bool(os.environ.get("WEBHOOK", True))
     PORT = int(os.environ.get("PORT", "8080"))
