@@ -27,7 +27,8 @@ from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, In
         "Report an illegal durg",
         "Report for offensive person detail",
         "Report for spam",
-          "Report for Violence" ]
+        "Report for Violence" 
+            ]
 
 
 
