@@ -13,11 +13,10 @@ config_path = Path("config.json")
 
 
 async def Report_Function(No):
-
     listofchoise = ['Report for child abuse', 'Report for copyrighted content', 'Report for impersonation', 'Report an irrelevant geogroup',
-                'Report an illegal durg', 'Report for Violence', 'Report for offensive person detail', 'Reason for Pornography', 'Report for spam']
-
+                    'Report an illegal durg', 'Report for Violence', 'Report for offensive person detail', 'Reason for Pornography', 'Report for spam']
     message = listofchoise[int(No) - 1]
+
 
     # Run a shell command and capture its output
     process = subprocess.Popen(
