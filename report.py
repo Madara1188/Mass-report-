@@ -28,49 +28,41 @@ def get_reason(text):
 
 #report = app.send(report_peer)
 
+# ... (previous imports)
+
 async def main(message):
-     config = (json.load(open("config.json")))
-     resportreaso = message
-     resportreason = get_reason(message)
-    # resportreason = input("whats ur pepoet reason: ")
-     
-     pee = config['Target']
-     for account in config["accounts"]:
-        string = account["Session_String"]
-        Name = account['OwnerName']
-        async with Client(name="Session", session_string=string) as app:
+    config = json.load(open("config.json"))
+    report_reason = get_reason(message)
+    
+    target_peer = config['Target']
+    
+    for account in config["accounts"]:
+        session_string = account["Session_String"]
+        owner_name = account['OwnerName']
+        
+        async with Client(name="Session", session_string=session_string) as app:
             try:
-                #await app.get_chat(-1001433138571)
-                peer = await app.resolve_peer(pee)
+                peer = await app.resolve_peer(target_peer)
                 peer_id = peer.channel_id
                 access_hash = peer.access_hash
                 channel = InputPeerChannel(channel_id=peer_id, access_hash=access_hash)
             except Exception as e:
                 print(e)
-            # elif dat.lower() == "user":
-            #     peer = await app.resolve_peer(pee)
-                
-            #     user_id = int(peer.user_id)
-            #     access_hash = str(peer.access_hash)
-            #     channel = InputPeerUser(user_id=user_id, access_hash=access_hash)
-            
+                continue 
             report_peer = ReportPeer(
-                                        peer=channel, 
-                                        reason=resportreason, 
-                                        message=resportreaso
-                                    )
+                peer=channel, 
+                reason=report_reason, 
+                message=message
+            )
 
             try:
-                result = await app.invoke(report_peer)
-                print(result, 'Reported by Account', Name)
-                 
+                result = await app.send(report_peer)
+                print(result, 'Reported by Account', owner_name)
             except BaseException as e:
                 print(e)
-                print("failed to report from :", Name)
-            
-                
+                print("Failed to report from:", owner_name)
+
 if __name__ == "__main__":
-    # Check if the correct number of command-line arguments is provided
     if len(sys.argv) != 2:
         print("Usage: python your_script.py <reason> <message>")
         sys.exit(1)
