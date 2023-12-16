@@ -6,13 +6,13 @@ import subprocess
 import sys
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from info import Config, Txt
+from info import Config, Txt, SUDO
 
 
 config_path = Path("config.json")
 
 
-@Client.on_message(filters.private & filters.chat(Config.OWNER) & filters.command('make_config'))
+@Client.on_message(filters.private & filters.chat(Config.SUDO) & filters.command('make_config'))
 async def make_config(bot: Client, msg: Message):
     try:
         if config_path.exists():
@@ -134,7 +134,7 @@ async def make_config(bot: Client, msg: Message):
             sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
 
 
-@Client.on_message(filters.private & filters.chat(Config.OWNER) & filters.command('see_accounts'))
+@Client.on_message(filters.private & filters.chat(Config.SUDO) & filters.command('see_accounts'))
 async def see_account(bot: Client, msg: Message):
 
     try:
