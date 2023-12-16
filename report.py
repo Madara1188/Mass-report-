@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import InputReportReasonChildAbuse, InputReportReasonFake, InputReportReasonCopyright, InputReportReasonGeoIrrelevant, InputReportReasonPornography, InputReportReasonIllegalDrugs, InputReportReasonSpam, InputReportReasonPersonalDetails, InputReportReasonViolence, InputPeerChannel
 
-def get_reason(message):
+def get_reason(text):
     if text == "Report for child abuse":
         return InputReportReasonChildAbuse()
     elif text == "Report for impersonation":
@@ -16,7 +16,7 @@ def get_reason(message):
         return InputReportReasonGeoIrrelevant()
     elif text == "Reason for Pornography":
         return InputReportReasonPornography()
-    elif text == "Report an illegal durg":
+    elif text == "Report an illegal drug":
         return InputReportReasonIllegalDrugs()
     elif text == "Report for offensive person detail":
         return InputReportReasonSpam()
@@ -24,8 +24,6 @@ def get_reason(message):
         return InputReportReasonPersonalDetails()
     elif text == "Report for Violence":
         return InputReportReasonViolence()
-
-#report = app.send(report_peer)
 
 async def main(message):
     config = json.load(open("config.json"))
@@ -48,7 +46,7 @@ async def main(message):
             report_peer = ReportPeer(
                 peer=channel, 
                 reason=report_reason, 
-                message=message
+                message=message  # Corrected from `report_reason` to `message`
             )
 
             try:
