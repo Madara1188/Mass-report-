@@ -9,7 +9,7 @@ import time
 import psutil
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
-from info import Config, Txt
+from info import Config, Txt, SUDO
 
 config_path = Path("config.json")
 
@@ -76,10 +76,10 @@ async def handle_Query(bot: Client, query: CallbackQuery):
         Btn = [
             [InlineKeyboardButton(text='❗Hᴇʟᴘ', callback_data='help'), InlineKeyboardButton(
                 text='🌀Sᴇʀᴠᴇʀ Sᴛᴀᴛs', callback_data='server')],
-            [InlineKeyboardButton(text='🌻Uᴘᴅᴀᴛᴇs', url='https://t.me/Kdramaland_Official'),
+            [InlineKeyboardButton(text='🌻Uᴘᴅᴀᴛᴇs', url='https://t.me/ALLTYPECC'),
              InlineKeyboardButton(text='🌨️Aʙᴏᴜᴛ', callback_data='about')],
             [InlineKeyboardButton(text='❄️Dᴇᴠᴇʟᴏᴘᴇʀ',
-                                  url='https://t.me/Snowball_Official')]
+                                  url='https://t.me/iam_daxx')]
         ]
 
         await query.message.edit(text=Txt.START_MSG.format(query.from_user.mention), reply_markup=InlineKeyboardMarkup(Btn))
