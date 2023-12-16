@@ -11,7 +11,7 @@ import asyncio
 import json
 from pyrogram import Client, filters
 from pyrogram.raw.functions.account import ReportPeer
-from pyrogram.raw.types import InputUser, InputReportReasonSpam, InputPeerChannel
+from pyrogram.raw.types import InputUser, InputReportReasonSpam, InputPeerChannel, InputReportReasonChildAbuse, InputReportReasonFake, InputReportReasonViolence
 
 
 def get_reason(text):
