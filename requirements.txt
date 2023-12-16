@@ -1,4 +1,4 @@
-pyrogram
+Pyrogram==1.2.4
 TgCrypto
 ujson
 Pyromod
