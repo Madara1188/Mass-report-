@@ -105,7 +105,7 @@ async def CHOICE_OPTION(bot, msg, number):
     os.remove('report.txt')
 
 
-@Client.on_message(filters.private & filters.user(Config.OWNER) & filters.command('report'))
+@Client.on_message(filters.private & filters.user(Config.SUDO) & filters.command('report'))
 async def handle_report(bot: Client, cmd: Message):
 
     CHOICE = [
