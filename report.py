@@ -12,7 +12,10 @@ import asyncio
 import json
 from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import *
-from pyrogram import *
+from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, InputReportReasonFake, \
+    InputReportReasonCopyright, InputReportReasonGeoIrrelevant, InputReportReasonPornography, \
+    InputReportReasonIllegalDrugs, InputReportReasonSpam, InputReportReasonPersonalDetails, InputReportReasonViolence
+
 
 def get_reason(text):
     if text == "Report for child abuse":
