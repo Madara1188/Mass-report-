@@ -1,9 +1,17 @@
+"""
 import sys
 from pyrogram import Client, filters
 import asyncio
 import json
 from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import *
+"""
+import sys
+import asyncio
+import json
+from pyrogram import Client, filters
+from pyrogram.raw.functions.account import ReportPeer
+from pyrogram.raw.types import InputUser, InputReportReasonSpam
 
 
 def get_reason(text):
