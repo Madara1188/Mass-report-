@@ -16,7 +16,28 @@ from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, In
     InputReportReasonCopyright, InputReportReasonGeoIrrelevant, InputReportReasonPornography, \
     InputReportReasonIllegalDrugs, InputReportReasonSpam, InputReportReasonPersonalDetails, InputReportReasonViolence
 
-ME = "Hello Telegram Support This User Are Scammers "
+
+def get_message(text):
+    if text == "Report for child abuse":
+        return InputReportReasonChildAbuse()
+    elif text == "Report for impersonation":
+        return InputReportReasonFake()
+    elif text == "Report for copyrighted content":
+        return InputReportReasonCopyright()
+    elif text == "Report an irrelevant geogroup":
+        return InputReportReasonGeoIrrelevant()
+    elif text == "Reason for Pornography":
+        return InputReportReasonPornography()
+    elif text == "Report an illegal durg":
+        return InputReportReasonIllegalDrugs()
+    elif text == "Report for offensive person detail":
+        return InputReportReasonSpam()
+    elif text == "Report for spam":
+        return InputReportReasonPersonalDetails()
+    elif text == "Report for Violence":
+        return InputReportReasonViolence()
+
+
 def get_reason(text):
     if text == "Report for child abuse":
         return InputReportReasonChildAbuse()
@@ -42,7 +63,7 @@ def get_reason(text):
 async def main(message):
     config = json.load(open("config.json"))
     report_reason = get_reason(message)
-    
+    report_message = get_message(message)
     target_peer = config['Target']
     
     for account in config["accounts"]:
@@ -61,7 +82,7 @@ async def main(message):
             report_peer = ReportPeer(
                 peer=channel, 
                 reason=report_reason, 
-                message=ME
+                message=report_message
             )
 
             try:
