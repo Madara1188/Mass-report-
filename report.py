@@ -37,8 +37,7 @@ def get_reason(text):
 
 async def main(message):
     config = json.load(open("config.json"))
-    report_reason = get_reason(message)
-    
+    report_reason = get_reason(text)
     target_peer = config['Target']
     
     for account in config["accounts"]:
@@ -56,7 +55,8 @@ async def main(message):
                 continue 
             report_peer = ReportPeer(
                 peer=channel, 
-                reason=report_reason
+                reason=report_reason, 
+                message=report_reason
             )
 
             try:
