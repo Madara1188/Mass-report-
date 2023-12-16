@@ -6,7 +6,7 @@ import subprocess
 import sys
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from info import Config, Txt, SUDO
+from info import Config, Txt
 
 
 config_path = Path("config.json")
