@@ -17,7 +17,7 @@ def get_reason(text):
     elif text == "Reason for Pornography":
         return InputReportReasonPornography()
     elif text == "Report an illegal drug":
-        return InputReportReasonIllegalDrugs()
+    return InputReportReasonIllegalDrugs()
     elif text == "Report for offensive person detail":
         return InputReportReasonSpam()
     elif text == "Report for spam":
