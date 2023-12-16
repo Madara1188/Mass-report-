@@ -3,7 +3,7 @@ import sys
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
-from info import Config, Txt, SUDO
+from info import Config, Txt
 
 
 @Client.on_message(filters.private & filters.command('start'))
