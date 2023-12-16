@@ -13,7 +13,7 @@ from pyrogram import Client, filters
 from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import InputReportReasonChildAbuse, InputReportReasonFake, InputReportReasonCopyright, InputReportReasonGeoIrrelevant, InputReportReasonPornography, InputReportReasonIllegalDrugs, InputReportReasonSpam, InputReportReasonPersonalDetails, InputReportReasonViolence, InputPeerChannel
 
-def get_reason(text):
+def get_reason(message):
     if text == "Report for child abuse":
         return InputReportReasonChildAbuse()
     elif text == "Report for impersonation":
@@ -37,7 +37,7 @@ def get_reason(text):
 
 async def main(message):
     config = json.load(open("config.json"))
-    report_reason = get_reason(text)
+    report_reason = get_reason(message)
     target_peer = config['Target']
     
     for account in config["accounts"]:
