@@ -10,6 +10,7 @@ import sys
 from pyrogram import Client, filters
 import asyncio
 import json
+import random
 from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import *
 from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, InputReportReasonFake, \
@@ -18,25 +19,16 @@ from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, In
 
 #
 
-def get_message(text):
-    if text == "Report for child abuse":
-        return InputReportReasonChildAbuse()
-    elif text == "Report for impersonation":
-        return InputReportReasonFake()
-    elif text == "Report for copyrighted content":
-        return InputReportReasonCopyright()
-    elif text == "Report an irrelevant geogroup":
-        return InputReportReasonGeoIrrelevant()
-    elif text == "Reason for Pornography":
-        return InputReportReasonPornography()
-    elif text == "Report an illegal durg":
-        return InputReportReasonIllegalDrugs()
-    elif text == "Report for offensive person detail":
-        return InputReportReasonSpam()
-    elif text == "Report for spam":
-        return InputReportReasonPersonalDetails()
-    elif text == "Report for Violence":
-        return InputReportReasonViolence()
+     text = [ "Report for child abuse",
+        "Report for impersonation",
+        "Report for copyrighted content",
+        "Report an irrelevant geogroup",
+        "Reason for Pornography",
+        "Report an illegal durg",
+        "Report for offensive person detail",
+        "Report for spam",
+          "Report for Violence" ]
+
 
 
 def get_reason(text):
@@ -64,7 +56,7 @@ def get_reason(text):
 async def main(message):
     config = json.load(open("config.json"))
     report_reason = get_reason(message)
-    report_message = get_message(message)
+    report_message = random.choice(text)
     target_peer = config['Target']
     
     for account in config["accounts"]:
@@ -80,14 +72,14 @@ async def main(message):
             except Exception as e:
                 print(e)
                 continue 
-            report_peer = ReportPeer(
+                report_peer = ReportPeer(
                 peer=channel, 
                 reason=report_reason, 
                 message=report_message
             )
 
             try:
-                result = await app.raw_send(ReportPeer(peer=InputUser(user_id=user_id), reason=report_reason, message_id=0, report_chat_id=0))
+                result = await app.send(ReportPeer)
                 print(result, 'Reported by Account', owner_name)
             except BaseException as e:
                 print(e)
