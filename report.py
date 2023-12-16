@@ -28,8 +28,6 @@ def get_reason(text):
 
 #report = app.send(report_peer)
 
-# ... (previous imports)
-
 async def main(message):
     config = json.load(open("config.json"))
     report_reason = get_reason(message)
