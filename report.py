@@ -16,7 +16,7 @@ from pyrogram.raw.types import InputPeerChannel, InputReportReasonChildAbuse, In
     InputReportReasonCopyright, InputReportReasonGeoIrrelevant, InputReportReasonPornography, \
     InputReportReasonIllegalDrugs, InputReportReasonSpam, InputReportReasonPersonalDetails, InputReportReasonViolence
 
-
+ME = "Hello Telegram Support This User Are Scammers "
 def get_reason(text):
     if text == "Report for child abuse":
         return InputReportReasonChildAbuse()
@@ -61,7 +61,7 @@ async def main(message):
             report_peer = ReportPeer(
                 peer=channel, 
                 reason=report_reason, 
-                message=message
+                message=ME
             )
 
             try:
