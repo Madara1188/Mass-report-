@@ -5,6 +5,8 @@ from pathlib import Path
 import sys
 from pyrogram import Client, filters
 from pyrogram.types import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from pyrogram.raw.functions.account import ReportPeer
+from pyrogram.raw.types import *
 from pyrogram.errors import MessageIdInvalid
 from info import Config, Txt
 
@@ -13,10 +15,10 @@ config_path = Path("config.json")
 
 
 async def Report_Function(No):
-    listofchoise = ['Report for child abuse', 'Report for copyrighted content', 'Report for impersonation', 'Report an irrelevant geogroup',
-                    'Report an illegal durg', 'Report for Violence', 'Report for offensive person detail', 'Reason for Pornography', 'Report for spam']
-    message = listofchoise[int(No) - 1]
 
+    listofchoise = ['Report for child abuse', 'Report for copyrighted content', 'Report for impersonation', 'Report an irrelevant geogroup',
+                    'Report an illegal durg', 'Report for Violence', 'Report for offensive person detail', 'Reason for Pornography', 'Report for spam"']
+    message = listofchoise[int(No) - 1]
 
     # Run a shell command and capture its output
     process = subprocess.Popen(
@@ -105,7 +107,7 @@ async def CHOICE_OPTION(bot, msg, number):
     os.remove('report.txt')
 
 
-@Client.on_message(filters.private & filters.user(Config.SUDO) & filters.command('report'))
+@Client.on_message(filters.private & filters.user(Config.OWNER) & filters.command('report'))
 async def handle_report(bot: Client, cmd: Message):
 
     CHOICE = [
@@ -114,7 +116,6 @@ async def handle_report(bot: Client, cmd: Message):
 
     await bot.send_message(chat_id=cmd.from_user.id, text=Txt.REPORT_CHOICE, reply_to_message_id=cmd.id, reply_markup=ReplyKeyboardMarkup(CHOICE, resize_keyboard=True))
 
-####     
 
 @Client.on_message(filters.regex("1"))
 async def one(bot: Client, msg: Message):
