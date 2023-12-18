@@ -5,8 +5,6 @@ from pathlib import Path
 import sys
 from pyrogram import Client, filters
 from pyrogram.types import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from pyrogram.raw.functions.account import ReportPeer
-from pyrogram.raw.types import *
 from pyrogram.errors import MessageIdInvalid
 from info import Config, Txt
 
@@ -107,7 +105,7 @@ async def CHOICE_OPTION(bot, msg, number):
     os.remove('report.txt')
 
 
-@Client.on_message(filters.private & filters.user(Config.SUDO) & filters.command('report'))
+@Client.on_message(filters.private & filters.user(Config.OWNER) & filters.command('report'))
 async def handle_report(bot: Client, cmd: Message):
 
     CHOICE = [
